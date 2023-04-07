@@ -1,0 +1,65 @@
+﻿<Window x:Class="CRM_MED.Views.DoctorTimeTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM_MED.Views"
+        mc:Ignorable="d"
+        Title="DoctorTimeTableWindow" Height="450" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="10 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Height="60" Width="60" Stretch="Fill" Source="{Binding _currentDoctor.PhotoPath, Converter={StaticResource imageConverter}}"></Image>
+            <TextBlock  VerticalAlignment="Center" Grid.Row="1">
+                    <Run FontSize="16">
+                        ФИО:
+                    </Run>
+                    <LineBreak></LineBreak>
+                    <Run FontSize="16" Text="{Binding _currentDoctor.Surname}"/>
+                <LineBreak></LineBreak>
+                    <Run FontSize="16" Text="{Binding _currentDoctor.Name}"/>
+                <LineBreak></LineBreak>
+                    <Run FontSize="16" Text="{Binding _currentDoctor.Patronymic}"/>
+
+            </TextBlock>
+            <TextBlock  VerticalAlignment="Center" Grid.Row="2">
+                    <Run FontSize="16" >
+                        Специальность:
+                    </Run>
+                <LineBreak></LineBreak>
+                    <Run FontSize="16" Text="{Binding _currentDoctor.SpecialityNavigation.SpecialityTitle}">
+                        
+                    </Run>
+            </TextBlock>
+        </Grid>
+        <DataGrid Grid.Column="1" x:Name="DG" Loaded="Load" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="День недели" Binding="{Binding Path= DayNavigation.DayOfWeekName}" IsReadOnly="True" x:Name="day"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Работает" Binding="{Binding Path = IsWorking}" x:Name="iswork"></DataGridCheckBoxColumn>
+
+                <DataGridComboBoxColumn Header="Время начала работы" SelectedItemBinding="{Binding WorkStart}"  x:Name="CBworkstart" ></DataGridComboBoxColumn>
+
+                <DataGridComboBoxColumn Header="Время конца работы" SelectedItemBinding="{Binding WorkEnd}" x:Name="CBworkend" ></DataGridComboBoxColumn>
+
+                <DataGridComboBoxColumn Header="Время начала обеда" SelectedItemBinding="{Binding LunchStart}"  x:Name="CBlaunchstart" ></DataGridComboBoxColumn>
+
+                <!--<DataGridComboBoxColumn Header="Время конца обеда" SelectedItemBinding="{Binding LunchEnd}" x:Name="CBlaunchend" ></DataGridComboBoxColumn>-->
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Column="1" Grid.Row="2" Click="SaveTimeTable">Сохранить</Button>
+    </Grid>
+</Window>

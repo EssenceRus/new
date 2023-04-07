@@ -1,0 +1,67 @@
+﻿<Window x:Class="CRM_MED.Views.AddPatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM_MED.Views"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="AddPatientWindow" Height="450" Width="800">
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Padding="0 10" Text="Имя" Grid.Column="0"></TextBlock>
+        <TextBox Width="200" Height="20" x:Name="name" Grid.Row="0"  HorizontalAlignment="Left" PreviewTextInput="validNoNum"></TextBox>
+        <TextBlock Padding="0 10" Text="Фамилия" Grid.Column="1"></TextBlock>
+        <TextBox Width="200" Height="20" x:Name="surname" Grid.Row="0"  HorizontalAlignment="Left" Grid.Column="1" PreviewTextInput="validNoNum"></TextBox>
+        <TextBlock Padding="0 10" Text="Отчество" Grid.Column="2"></TextBlock>
+        <TextBox Width="200" Height="20" x:Name="patronymic" Grid.Row="0"  HorizontalAlignment="Left" Grid.Column="2" PreviewTextInput="validNoNum"></TextBox>
+        <TextBlock Text="гендер" Grid.Column="0" Grid.Row="1"></TextBlock>
+        <ComboBox Width="200" Height="20" x:Name="gender"   HorizontalAlignment="Left" ItemsSource="{Binding genders}" SelectedItem="{Binding Gender}"  Grid.Column="0" Grid.Row="1">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Code}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock Padding="0 10" Text="Телефон" Grid.Column="1" Grid.Row="1"></TextBlock>
+
+        <xctk:MaskedTextBox Mask="+7(000)-000-00-00" Width="200" Height="20" x:Name="phone"   HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1"></xctk:MaskedTextBox>
+        <TextBlock Padding="0 10" Text="Хронические заболевания" Grid.Column="2" Grid.Row="1"></TextBlock>
+        <TextBox Width="200" Height="20" x:Name="hronick"   HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1"></TextBox>
+        <TextBlock Padding="0 10" Text="Серия номер паспорта" Grid.Column="0" Grid.Row="2"></TextBlock>
+        <xctk:MaskedTextBox Mask="0000 000000"  Width="200" Height="20" x:Name="pass"   HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2"></xctk:MaskedTextBox>
+        <TextBlock Padding="0 10" Text="Снил" Grid.Column="1" Grid.Row="2"></TextBlock>
+        <xctk:MaskedTextBox Mask="000-000-000 00"  Width="200" Height="20" x:Name="snils"   HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2"></xctk:MaskedTextBox>
+        <TextBlock Padding="0 10" Text="Фото" Grid.Column="2" Grid.Row="2"></TextBlock>
+        <TextBox Width="200" Height="20" x:Name="photo"   HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2"></TextBox>
+        <TextBlock Padding="0 10" Text="Номер полиса" Grid.Column="0" Grid.Row="3"></TextBlock>
+        <xctk:MaskedTextBox Mask="0000000000000000" Width="200" Height="20" x:Name="policy"  HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3"></xctk:MaskedTextBox>
+        <TextBlock Padding="0 10" Text="Место регистрации" Grid.Column="1" Grid.Row="3"></TextBlock>
+        <TextBox Width="200" Height="20" x:Name="reg"   HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3"></TextBox>
+        <TextBlock Padding="0 10" Text="Дата рождения" Grid.Column="2" Grid.Row="3"></TextBlock>
+        <DatePicker Width="200" Height="20" x:Name="birthday"  HorizontalAlignment="Left" Grid.Column="2" Grid.Row="3"></DatePicker>
+
+
+        <Button Width="100" Click="AddBtn" Grid.Column="0" Grid.Row="4">
+            <Button.Content>
+                <TextBlock x:Name="BtnText"></TextBlock>
+            </Button.Content>
+        </Button>
+
+
+    </Grid>
+</Window>

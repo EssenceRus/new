@@ -1,0 +1,17 @@
+﻿<Window x:Class="CRM_MED.Views.PatienDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM_MED.Views"
+        mc:Ignorable="d"
+        Title="PatienDialogWindow" Height="120" Width="250" ResizeMode="NoResize">
+    <StackPanel>
+        <Label FontSize="16" Foreground="#4869D6" FontWeight="Bold" HorizontalAlignment="Center">Выберите действие</Label>
+        <StackPanel Orientation="Horizontal" Margin="0 10">
+            
+        <Button Click="GoToRedact" Width="120" Margin="0 0 10 0">Редактирование</Button>
+            <Button Click="GoToReception" Width="120">Запись</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

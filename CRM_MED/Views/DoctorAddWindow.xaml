@@ -1,0 +1,96 @@
+﻿<Window x:Class="CRM_MED.Views.DoctorAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM_MED.Views"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        ResizeMode="NoResize"
+        Title="DoctorAddWindow" MaxHeight="520" MaxWidth="600" Height="520" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" Grid.Column="0">
+            <Image x:Name="PhotoEdit" Width="80" Margin="8 8 0 0" Height="80" Source="{Binding PhotoPath, Converter={StaticResource imageConverter}}"></Image>
+            <Button Click="AddMainPhoto" Height="32" Width="100" Margin="15 55 0 0" Content="Добавить фото"/>
+        </WrapPanel>
+        <TextBox Height="36" Width="200" MaxLength="50"   Grid.Row="1" x:Name="name" materialDesign:HintAssist.Hint="Имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Row="2" MaxLength="50" Width="200" Height="36" x:Name="surname" materialDesign:HintAssist.Hint="Фамилия" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged" ValidatesOnExceptions="True" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBox Grid.Row="3" MaxLength="71" Width="200" Height="36" x:Name="patron" materialDesign:HintAssist.Hint="Отчество" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Binding Path="Patronymic" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <xctk:MaskedTextBox Mask="+7(000)000-00-00" PromptChar="x" x:Name="number" Grid.Row="1" Grid.Column="1" Width="200" Height="36"  materialDesign:HintAssist.Hint="Номер телефона" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <xctk:MaskedTextBox.Text>
+                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </xctk:MaskedTextBox.Text>
+        </xctk:MaskedTextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="200" Height="36" x:Name="email" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBox Grid.Row="4" MaxLength="15" Grid.Column="0" Width="200" Height="36" x:Name="log" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Binding Path="Login" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBox Grid.Row="4" MaxLength="8" Grid.Column="1" Width="200" Height="36" x:Name="pas"  materialDesign:HintAssist.Hint="Пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" NotifyOnValidationError="True">
+                <Binding.ValidationRules>
+                    <DataErrorValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <ComboBox materialDesign:HintAssist.Hint="Специальность" Style="{StaticResource MaterialDesignComboBox}" x:Name="spec" Grid.Column="1" Grid.Row="3" Width="200" Height="28" SelectedItem="{Binding SpecialityNavigation}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding SpecialityTitle}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+       
+
+
+        <Button Click="GoBack" Grid.Row="0" Grid.Column="2" Width="100" Height="32" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="15">Закрыть</Button>
+        <Button Click="AddDoctorToBase" Grid.Row="5" Grid.Column="0" Width="180" Height="32" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15 0 0 15">Добавить</Button>
+        
+    </Grid>
+</Window>
